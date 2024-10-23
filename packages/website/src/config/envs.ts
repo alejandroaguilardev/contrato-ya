@@ -1,10 +1,10 @@
 interface EnvConfig {
-    PUBLIC_HOST_API: string;
-    PUBLIC_GOOGLE_PUBLIC_KEY: string;
+    HOST_API: string;
+    GOOGLE_RECAPTCHA: string;
 }
 
 function getEnvVariable<T = string>(key: string, defaultValue?: T): T {
-    const value = import.meta.env[key] as T | undefined;
+    const value = import.meta.env[`${key}`] as T | undefined;
     if (!value && defaultValue === undefined) {
         throw new Error(`Missing environment variable: ${key}`);
     }
@@ -12,8 +12,8 @@ function getEnvVariable<T = string>(key: string, defaultValue?: T): T {
 }
 
 const envs: EnvConfig = {
-    PUBLIC_HOST_API: getEnvVariable('PUBLIC_HOST_API'),
-    PUBLIC_GOOGLE_PUBLIC_KEY: getEnvVariable('PUBLIC_GOOGLE_PUBLIC_KEY'),
+    HOST_API: getEnvVariable('PUBLIC_HOST_API'),
+    GOOGLE_RECAPTCHA: getEnvVariable('PUBLIC_GOOGLE_RECAPTCHA'),
 };
 
 export default envs;

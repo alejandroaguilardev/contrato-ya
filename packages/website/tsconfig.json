@@ -9,7 +9,6 @@
     },
     "strictNullChecks": true,
     "jsx": "preserve",
-    "jsxImportSource": "solid-js"
   },
   "exclude": [
     "public"

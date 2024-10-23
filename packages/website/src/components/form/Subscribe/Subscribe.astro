@@ -1,11 +1,17 @@
 ---
+import envs from "@/config/envs";
 import styles from "./subscribe.module.scss";
 ---
 
 <div class={styles["newsletter"]}>
 	<h2 class={styles["newsletter__heading"]}>Subscríbete al boletín</h2>
 	<div id="newsletter-alert"></div>
-	<form class={styles["newsletter__form"]} id="newsletter-form" method="post">
+	<form
+		class={styles["newsletter__form"]}
+		id="newsletter-form"
+		method="post"
+		data-api-url={envs.HOST_API}
+	>
 		<input
 			type="email"
 			name="email"

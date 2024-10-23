@@ -13,7 +13,7 @@ function handleSubmit(event: Event): void {
         return;
     }
 
-    grecaptcha.execute(envs.PUBLIC_GOOGLE_PUBLIC_KEY, { action: "submit" })
+    grecaptcha.execute(envs.GOOGLE_RECAPTCHA, { action: "submit" })
         .then((token) => {
             const email = getEmail();
             subscribe(email, token)
@@ -25,7 +25,7 @@ function handleSubmit(event: Event): void {
 
 
 async function subscribe(email: string, recaptchaToken: string): Promise<void> {
-    const response = await fetch(envs.PUBLIC_HOST_API + "/api/brevo/subscribe", {
+    const response = await fetch(envs.HOST_API + "/api/brevo/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, recaptcha: recaptchaToken }),

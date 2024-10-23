@@ -26,8 +26,10 @@ const { title } = Astro.props;
 		<slot />
 		<FloatingWhatsappButton />
 		<Footer />
-		<script src={`https://www.google.com/recaptcha/api.js?render=${envs.PUBLIC_GOOGLE_PUBLIC_KEY}`} async defer
-		></script>
+		<script
+			src={`https://www.google.com/recaptcha/api.js?render=${envs.GOOGLE_RECAPTCHA}`}
+			async
+			defer></script>
 	</body>
 </html>
 
