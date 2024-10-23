@@ -3,6 +3,7 @@
 namespace App\SendEmail\Infrastructure;
 
 use App\Common\Infrastructure\CurlHttpClient;
+use App\Common\Infrastructure\GoogleRecaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,8 @@ class SendEmailContactController extends AbstractController
     public function __construct(
         readonly CurlHttpClient $curlHttpClient,
         readonly ContactRequestValidator $requestValidator,
-        readonly SendEmailContact $sendEmailContact
+        readonly SendEmailContact $sendEmailContact,
+        readonly GoogleRecaptcha $googleRecaptcha
     ) { }
 
     public function sendMail(Request $request): JsonResponse
@@ -40,25 +42,8 @@ class SendEmailContactController extends AbstractController
             return new JsonResponse(['error' => 'reCAPTCHA token is missing.'], Response::HTTP_BAD_REQUEST);
         }
         
-        if (!$this->validateRecaptcha($recaptchaToken)) {
+        if (!$this->googleRecaptcha->validateRecaptcha($recaptchaToken)) {
             return new JsonResponse(['error' => 'reCAPTCHA validation failed.'], Response::HTTP_BAD_REQUEST);
         }
     }
-
-    private function validateRecaptcha(string $recaptchaToken): bool
-    {
-        $secret = getenv('GOOGLE_SECRET_MAIL');
-        $response = $this->curlHttpClient->post(
-            'https://www.google.com/recaptcha/api/siteverify',
-            [],
-            [
-                'secret' => $secret,
-                'response' => $recaptchaToken,
-            ],
-        );
-    
-        $result = json_decode($response['body'], true);
-        return $result['success'] && $result['score'] >= 0.5;
-    }
-    
 }

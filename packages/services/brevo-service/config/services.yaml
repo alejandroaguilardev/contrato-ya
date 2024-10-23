@@ -19,6 +19,7 @@ services:
             - '../src/Kernel.php'
 
     App\Common\Infrastructure\CurlHttpClient: ~
+    App\Common\Infrastructure\GoogleRecaptcha: ~
 
     App\Subscribe\Application\SubscriptionContact:
         arguments:
@@ -32,6 +33,7 @@ services:
             $curlHttpClient: '@App\Common\Infrastructure\CurlHttpClient'
             $requestValidator: '@App\Subscribe\Infrastructure\Validators\SubscriptionRequestValidator'
             $subscriptionContact: '@App\Subscribe\Application\SubscriptionContact'
+            $googleRecaptcha: '@App\Common\Infrastructure\GoogleRecaptcha'
 
     App\SendEmail\Application\SendEmailContact:
         arguments:
@@ -46,3 +48,4 @@ services:
             $curlHttpClient: '@App\Common\Infrastructure\CurlHttpClient'
             $requestValidator: '@App\SendEmail\Infrastructure\Validators\ContactRequestValidator'
             $sendEmailContact: '@App\SendEmail\Application\SendEmailContact'
+            $googleRecaptcha: '@App\Common\Infrastructure\GoogleRecaptcha'
