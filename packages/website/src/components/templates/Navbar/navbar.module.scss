@@ -1,0 +1,82 @@
+@use "@/styles/tools/breakpoints.scss" as _breakpoints;
+
+.menu {
+
+    &__container {
+        position: relative;
+    }
+
+    &__nav {
+        display: none;
+    }
+
+    &__drawer {
+        background-color: var(--bg-paper);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        height: 100vh;
+        left: -300px;
+        padding: 1.5rem;
+        position: fixed;
+        top: 0;
+        transition: left 0.3s ease-in-out;
+        width: 300px;
+        z-index: var(--z-drawer);
+    }
+
+    &__drawer_nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__drawer_item {
+        padding: 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        white-space: nowrap;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 70%;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover::after,
+        &:focus::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    }
+
+    &__close_button {
+        font-size: 2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--primary-color);
+        align-self: flex-end;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: _breakpoints.$breakpoint-sm) {
+    .menu__nav {
+        display: flex;
+        gap: 1rem;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
+
+    .menu__button {
+        display: none;
+    }
+}

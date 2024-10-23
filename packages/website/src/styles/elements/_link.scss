@@ -1,0 +1,11 @@
+a {
+  position: relative;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: all 0.5s;
+
+  &:hover,
+  &:focus {
+    color: var(--text-color);
+  }
+}

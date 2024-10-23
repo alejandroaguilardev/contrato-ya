@@ -1,0 +1,12 @@
+.social-networks {
+    list-style: none;
+    display: flex;
+    gap: 1rem
+}
+
+.social-networks svg {
+    color: var(--bg-paper);
+    fill: var(--bg-paper);
+    width: 1.5rem;
+    height: 1.5rem;
+}

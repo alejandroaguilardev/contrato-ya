@@ -1,0 +1,93 @@
+---
+import MenuIcon from "@/icons/MenuIcon.astro";
+import styles from "./navbar.module.scss";
+
+const menuItems = [
+	{ label: "¿Quienes somos?", slug: "quienes-somos" },
+	{ label: "Más servicios", slug: "servicios" },
+	{ label: "FAQ", slug: "faq" },
+	{ label: "Contacto", slug: "contacto" },
+];
+const ctaText = "Contactar";
+---
+
+<nav class={styles.menu}>
+	<div class={styles.container}>
+		<div class={styles.menu__nav}>
+			{
+				menuItems.map((item) => (
+					<a
+						class={styles.menu__drawer_item}
+						href={`#${item.slug}`}
+						aria-label={item.label}
+					>
+						{item.label}
+					</a>
+				))
+			}
+			<a class="btn btn--primary" href="#contacto" aria-label={ctaText}
+				>{ctaText}</a
+			>
+		</div>
+
+		<div class={styles.menu__button} id="menu-toggle">
+			<MenuIcon />
+		</div>
+
+		<aside class={styles.menu__drawer} id="drawer">
+			<nav class={styles.menu__drawer_nav}>
+				<button class={styles.menu__close_button} id="close-button"
+					>&times;</button
+				>
+				{
+					menuItems.map((item) => (
+						<a
+							class={styles.menu__drawer_item}
+							href={`#${item.slug}`}
+						>
+							{item.label}
+						</a>
+					))
+				}
+				<a class="btn btn--primary" href="#contacto">{ctaText}</a>
+			</nav>
+		</aside>
+	</div>
+</nav>
+
+<style>
+	.menu__drawer--open {
+		left: 0;
+	}
+</style>
+<script>
+	const menuToggle = document.getElementById("menu-toggle");
+	const drawer = document.getElementById("drawer");
+	const closeButton = document.getElementById("close-button");
+
+	if (menuToggle && drawer && closeButton) {
+		menuToggle.addEventListener("click", (event) => {
+			event.stopPropagation();
+			drawer.classList.toggle("menu__drawer--open");
+		});
+
+		closeButton.addEventListener("click", () => {
+			drawer.classList.toggle("menu__drawer--open");
+		});
+
+		document.addEventListener("click", (event) => {
+			const target = event.target as Node;
+			if (
+				drawer.classList.contains("menu__drawer--open") &&
+				!drawer.contains(target) &&
+				event.target !== menuToggle
+			) {
+				drawer.classList.remove("menu__drawer--open");
+			}
+		});
+
+		drawer.addEventListener("click", (event) => {
+			event.stopPropagation();
+		});
+	}
+</script>

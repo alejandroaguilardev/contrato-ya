@@ -1,0 +1,58 @@
+---
+import styles from "./about.module.scss";
+
+const items = [
+	{
+		title: "Seguridad",
+		description: "Tu información es privada y está protegida",
+		icon: "/assets/img/icons/seguridad.svg",
+	},
+	{
+		title: "Asesoría personalizada",
+		description:
+			"Todas tus consultas serán resueltas por nuestro de profesionales",
+		icon: "/assets/img/icons/asesoria-personalizada.svg",
+	},
+	{
+		title: "El tiempo es dinero",
+		description:
+			"El tiempo es dinero Obtén tus contratos en minutos, desde cualquier lugar.",
+		icon: "/assets/img/icons/dinero.svg",
+	},
+];
+---
+
+<section class={styles.about} id="quienes-somos">
+	<div class="container">
+		<div class={styles.container__left}>
+			<div class={styles.container__left__content}>
+				<p class={styles.container__left__text__small}>
+					¿Por qué Contrato Ya?
+				</p>
+				<p class={styles.container__left__paragraph}>
+					Tus contratos sin complicaciones.
+				</p>
+			</div>
+			<a
+				class="btn btn--primary"
+				href="#quienes-somos"
+				aria-label="¿Quiénes Somos?">¿Quiénes Somos?</a
+			>
+		</div>
+		<div class={styles.container__right}>
+			{
+				items.map((item) => (
+					<div class={styles.container__right__item}>
+						<img src={item.icon} alt={item.title} />
+						<h2 class={styles.container__right__item__title}>
+							{item.title}
+						</h2>
+						<p class={styles.container__right__item__paragraph}>
+							{item.description}
+						</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

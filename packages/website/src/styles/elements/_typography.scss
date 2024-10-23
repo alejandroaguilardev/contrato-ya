@@ -1,0 +1,41 @@
+body {
+    font-family: var(--font-family);
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+p {
+    font-size: var(--fs-body);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: var(--fs-33);
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: var(--fs-25);
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: var(--fs-19);
+    margin-bottom: 0.5rem;
+}
+
+h4 {
+    font-size: var(--fs-14);
+    margin-bottom: 0.5rem;
+}
+
+h5 {
+    font-size: var(--fs-12);
+    margin-bottom: 0.5rem;
+}
+
+h6 {
+    font-size: var(--fs-9);
+    margin-bottom: 0.5rem;
+}

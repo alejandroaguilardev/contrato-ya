@@ -1,0 +1,88 @@
+---
+import UserIcon from "@/icons/UserIcon.astro";
+import EmailIcon from "@/icons/EmailIcon.astro";
+import PhoneIcon from "@/icons/PhoneIcon.astro";
+import PresenterIcon from "@/icons/PresenterIcon.astro";
+import styles from "./contact-form.module.scss";
+
+const { title } = Astro.props;
+---
+
+<div id="alert"></div>
+<form id="contact-form" class={styles["contact-form"]} method="post">
+	<div class={styles["contact-form__header"]}>
+		<h2>{title}</h2>
+	</div>
+	<div class={styles["contact-form__fields"]}>
+		<div class={styles["contact-form__field"]}>
+			<label class={styles["contact-form__label"]}>
+				<UserIcon />
+				Cliente
+			</label>
+			<input
+				type="text"
+				name="name"
+				placeholder="Ingresa tu nombre completo"
+			/>
+		</div>
+	</div>
+	<div class={styles["contact-form__fields"]}>
+		<div class={styles["contact-form__field"]}>
+			<label class={styles["contact-form__label"]}>
+				<EmailIcon />
+				Correo
+			</label>
+			<input
+				type="email"
+				name="email"
+				placeholder="¿Dónde te escribimos?"
+			/>
+		</div>
+		<div class={styles["contact-form__field"]}>
+			<label class={styles["contact-form__label"]}>
+				<PhoneIcon />
+				Teléfono
+			</label>
+			<input
+				type="tel"
+				name="phone"
+				placeholder="¿Dónde te contactamos?"
+			/>
+		</div>
+	</div>
+
+	<div class={styles["contact-form__field"]}>
+		<label class={styles["contact-form__label"]}>
+			<PresenterIcon />
+			Describe el problema o requerimiento que tienes
+		</label>
+		<textarea
+			placeholder="Sé específico por favor"
+			class={styles["contact-form__textarea"]}
+			rows="5"
+			name="message"
+			id="message"></textarea>
+		<div class={styles["contact-form__terms"]}>
+			<input
+				type="checkbox"
+				id="terms-checkbox"
+				name="terms"
+				class={styles["contact-form__terms__checkbox"]}
+			/>
+			<label for="terms-checkbox">
+				Acepto los <a href="/terminos-y-condiciones" target="_blank"
+					>términos y condiciones</a
+				>
+			</label>
+		</div>
+	</div>
+	<div class={styles["contact-form__actions"]}>
+		<div>
+			<button type="submit" class="btn btn--primary">
+				<span>Enviar y obtener asesoría</span>
+			</button>
+		</div>
+	</div>
+
+	<script src="./contact-form.ts"></script>
+</form>

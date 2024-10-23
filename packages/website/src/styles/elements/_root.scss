@@ -1,0 +1,54 @@
+@use "@/styles/settings/variables" as *;
+
+:root {
+    --primary-color: #{$primary-color};
+    --secondary-color: #{$secondary-color};
+    --accent-color: #{$accent-color};
+    --gray-color: #{$gray-color};
+    --dark-gray: #{$dark-gray};
+    --bg: #{$bg};
+    --bg-paper: #{$bg-paper};
+    --text-color: #{$text-color};
+    --text-color-light: #{$text-color-light};
+    --text-color-dark: #{$text-color-dark};
+    --text-color-secondary: #{$text-color-secondary};
+    --link-color: #{$link-color};
+    --link-hover-color: #{$link-hover-color};
+    --success-color: #{$success-color};
+    --warning-color: #{$warning-color};
+    --error-color: #{$error-color};
+    --info-color: #{$info-color};
+    --border-color: #{$border-color};
+    --shadow-color: #{$shadow-color};
+    --light-bg: #{$light-bg};
+    --overlay-bg: #{$overlay-bg};
+
+    --z-overlay: #{$z-overlay};
+    --z-tooltip: #{$z-tooltip};
+    --z-dropdown: #{$z-dropdown};
+    --z-menu: #{$z-menu};
+    --z-modal: #{$z-modal};
+    --z-drawer: #{$z-drawer};
+    --z-widget: #{$z-widget};
+
+    --font-family: #{$font-family};
+
+    --fs-base: #{$fs-base};
+    --fs-9: #{$fs-9};
+    --fs-12: #{$fs-12};
+    --fs-14: #{$fs-14};
+    --fs-16: #{$fs-16};
+    --fs-19: #{$fs-19};
+    --fs-22: #{$fs-22};
+    --fs-25: #{$fs-25};
+    --fs-33: #{$fs-33};
+
+    --fs-small: var(--fs-9);
+    --fs-medium: var(--fs-14);
+    --fs-large: var(--fs-19);
+    --fs-body: var(--fs-14);
+    --fs-menu: var(--fs-14);
+    --fs-btn: var(--fs-12);
+    --fs-footer: var(--fs-12);
+    --fs-logo: var(--fs-16);
+}

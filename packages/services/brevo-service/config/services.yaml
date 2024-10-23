@@ -1,0 +1,48 @@
+# config/services.yaml
+parameters:
+    brevo.api_key: '%env(BREVO_API_KEY)%'
+    brevo.api_url: '%env(BREVO_API)%'
+    brevo.list_subscribe: '%env(BREVO_LIST_SUBSCRIBE)%'
+    brevo.sender: '%env(MAIL_NAME)%'
+    brevo.email: '%env(MAIL_EMAIL)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Common\Infrastructure\CurlHttpClient: ~
+
+    App\Subscribe\Application\SubscriptionContact:
+        arguments:
+            $httpClient: '@App\Common\Infrastructure\CurlHttpClient'
+            $apiKey: '%brevo.api_key%'
+            $apiUrl: '%brevo.api_url%'
+            $listSubscribe: '%brevo.list_subscribe%'
+
+    App\Subscribe\Infrastructure\SubscribeController:
+        arguments:
+            $curlHttpClient: '@App\Common\Infrastructure\CurlHttpClient'
+            $requestValidator: '@App\Subscribe\Infrastructure\Validators\SubscriptionRequestValidator'
+            $subscriptionContact: '@App\Subscribe\Application\SubscriptionContact'
+
+    App\SendEmail\Application\SendEmailContact:
+        arguments:
+            $httpClient: '@App\Common\Infrastructure\CurlHttpClient'
+            $apiUrl: '%brevo.api_url%'
+            $apiKey: '%brevo.api_key%'
+            $sender: '%brevo.sender%'
+            $email: '%brevo.email%'
+
+    App\SendEmail\Infrastructure\SendEmailContactController:
+        arguments:
+            $curlHttpClient: '@App\Common\Infrastructure\CurlHttpClient'
+            $requestValidator: '@App\SendEmail\Infrastructure\Validators\ContactRequestValidator'
+            $sendEmailContact: '@App\SendEmail\Application\SendEmailContact'

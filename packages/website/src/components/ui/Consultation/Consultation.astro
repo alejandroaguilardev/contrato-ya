@@ -1,0 +1,22 @@
+---
+import styles from "./consultation.module.scss";
+---
+
+<section class={styles["consultation-section"]}>
+	<div class="container">
+		<div class={styles["consultation-section__content"]}>
+			<p class={styles["consultation-section__title"]}>
+				Si esta información no resuelve tus preguntas, conversa con
+				nosotros.
+			</p>
+			<a
+				href="https://api.whatsapp.com/send?phone=51960627511&text=Hola%20qu%C3%A9%20tal?%20Necesito"
+				target="_blank"
+				class={` ${styles["consultation-section__buttons"]}`}
+				aria-label="Conversemos"
+			>
+				Conversemos
+			</a>
+		</div>
+	</div>
+</section>

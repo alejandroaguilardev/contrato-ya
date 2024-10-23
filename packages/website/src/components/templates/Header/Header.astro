@@ -1,0 +1,14 @@
+---
+import Navbar from "@/components/templates/Navbar/Navbar.astro";
+import Logotype from "@/components/ui/Logotype/Logotype.astro";
+import styles from "./header.module.scss";
+---
+
+<header class={styles.header}>
+	<div class="container">
+		<div class={styles.header__content}>
+			<Logotype />
+			<Navbar />
+		</div>
+	</div>
+</header>

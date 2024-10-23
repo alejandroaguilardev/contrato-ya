@@ -1,0 +1,10 @@
+contact_subscribe:
+    path: /api/brevo/subscribe
+    controller: 'App\Subscribe\Infrastructure\SubscribeController::subscribe'
+    methods: [POST]
+
+send_email_contact:
+    path: /api/brevo/sendemail/contact
+    controller: 'App\SendEmail\Infrastructure\SendEmailContactController::sendMail'
+    methods: [POST]
+

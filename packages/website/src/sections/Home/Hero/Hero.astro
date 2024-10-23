@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import styles from "./hero.module.scss";
+import ContactForm from "@/components/form/ContactForm/ContactForm.astro";
+
+const socialLinks = await getCollection("socialLinks");
+const socialLink = socialLinks.filter(
+	({ data }: any) => data.platform === "WhatsApp",
+)[0].data;
+---
+
+<section class={styles.hero}>
+	<img
+		class={styles.hero__img}
+		src="/assets/img/contrato-ya.webp"
+		alt="Hero"
+	/>
+	<div class={styles.hero__overlay}></div>
+	<div class={styles.hero__container}>
+		<div class={styles.hero__content}>
+			<h1 class={styles.hero__title}>
+				Tus contratos en minutos: rápido, fácil y seguro
+			</h1>
+			<p class={styles.hero__subtitle}>
+				Todo de manera virtual: contratos claros y completos desde
+				cualquier lugar
+			</p>
+			<div class={styles.hero__buttons}>
+				<a
+					href={socialLink["url"]}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn btn--success full-width"
+				>
+					Whatsapp
+				</a>
+				<a href="#servicios" class="btn btn--primary full-width">
+					Ver más servicios
+				</a>
+			</div>
+		</div>
+		<div class={styles.hero__contact}>
+			<ContactForm title="	Reserva una asesoría" />
+		</div>
+	</div>
+</section>

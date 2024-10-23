@@ -1,0 +1,111 @@
+---
+import styles from "./floating-whatsapp-button.module.scss";
+import WhatsAppIcon from "@/icons/WhastAppIcon.astro";
+
+const advisors = [
+	{
+		name: "Brad Ramos",
+		description: "Asesor Internacional - Nacional",
+		status: "Online",
+		imageUrl:
+			"https://www.pettravelperu.com/frontend/whatsapp_chat_support/asesoras/jimena.png",
+		phoneNumber: "51975758075",
+	},
+];
+---
+
+<div class={styles.whatsappChatSupport}>
+	<div class={styles.whatsappChatSupport__container} id="whatsappButton">
+		<div class={styles.whatsappChatSupport__buttonLabel}>
+			¿Tienes alguna duda?
+		</div>
+		<div class={styles.whatsappChatSupport__button}>
+			<WhatsAppIcon />
+		</div>
+	</div>
+
+	<div class={styles.whatsappChatSupport__popup} id="whatsappPopup">
+		<div class={styles.whatsappChatSupport__popupClose} id="popupClose">
+			<span class="fa fa-close"></span>
+		</div>
+		<div class={styles.whatsappChatSupport__popupHeader}>
+			<strong>¿Necesitas ayuda?, chatea con nosotros</strong>
+			<br />
+			<div class={styles.whatsappChatSupport__popupDescription}>
+				Has clic en el chat respectivo
+			</div>
+		</div>
+		<div class={styles.whatsappChatSupport__popupPersonContainer}>
+			{
+				advisors.map((advisor) => (
+					<a
+						href={`https://wa.me/${advisor.phoneNumber}`}
+						target="_blank"
+						rel="no-"
+					>
+						<div
+							class={styles.whatsappChatSupport__popupPerson}
+							data-number={advisor.phoneNumber}
+						>
+							<div
+								class={
+									styles.whatsappChatSupport__popupPersonImg
+								}
+							>
+								<img
+									src={advisor.imageUrl}
+									alt={advisor.name}
+								/>
+							</div>
+							<div
+								class={
+									styles.whatsappChatSupport__popupPersonContent
+								}
+							>
+								<div
+									class={
+										styles.whatsappChatSupport__popupPersonName
+									}
+								>
+									{advisor.name}
+								</div>
+								<div
+									class={
+										styles.whatsappChatSupport__popupPersonDescription
+									}
+								>
+									{advisor.description}
+								</div>
+								<div
+									class={
+										styles.whatsappChatSupport__popupPersonStatus
+									}
+								>
+									{advisor.status}
+								</div>
+							</div>
+						</div>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const whatsappButton = document.getElementById("whatsappButton");
+		const whatsappPopup = document.getElementById("whatsappPopup");
+		const popupClose = document.getElementById("popupClose");
+
+		if (whatsappButton && whatsappPopup && popupClose) {
+			whatsappButton.addEventListener("click", function () {
+				whatsappPopup.classList.toggle("show");
+			});
+
+			popupClose.addEventListener("click", function () {
+				whatsappPopup.classList.remove("show");
+			});
+		}
+	});
+</script>

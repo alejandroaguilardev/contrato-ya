@@ -1,0 +1,8 @@
+@use "@/styles/tools/breakpoints.scss" as _breakpoints;
+
+.container {
+    width: 100%;
+    max-width: _breakpoints.$breakpoint-lg;
+    margin: 0 auto;
+    padding: 0 15px;
+}

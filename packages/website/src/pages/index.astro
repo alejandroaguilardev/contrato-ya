@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/sections/Home/Hero/Hero.astro";
+import About from "@/sections/Home/About/About.astro";
+import BannerOne from "@/sections/Home/Banner/BannerOne.astro";
+import BannerTwo from "@/sections/Home/Banner/BannerTwo.astro";
+import Services from "@/sections/Home/Services/Services.astro";
+import ContactSection from "@/sections/Home/ContactSection/ContactSection.astro";
+import Consultation from "@/components/ui/Consultation/Consultation.astro";
+---
+
+<Layout title="Home contrato ya">
+	<main>
+		<Hero />
+		<About />
+		<BannerOne />
+		<BannerTwo />
+		<Services />
+		<section class="secondary">
+			<ContactSection />
+		</section>
+		<Consultation />
+	</main>
+</Layout>

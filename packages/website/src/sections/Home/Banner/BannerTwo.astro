@@ -1,0 +1,29 @@
+---
+import styles from "./banner.module.scss";
+---
+
+<section class={`${styles["banner"]} ${styles["banner--bg-alt"]}`}>
+	<div class="container">
+		<div class={`${styles["banner__wrapper"]}`}>
+			<div class={styles["banner__content"]}>
+				<h2 class={styles["banner__title"]}>
+					Tu mejor alternativa para elaborar contratos.
+				</h2>
+				<p class={styles["banner__description"]}>
+					En Contrato Ya, nuestro equipo de especialistas actualiza
+					constantemente nuestros documentos, para que los contratos
+					siempre se encuentren adaptados al 100% con la normativa
+					actual. Contrato Ya es tu aliado de confianza.
+				</p>
+			</div>
+			<div class={styles["banner__image-container"]}>
+				<img
+					src="/assets/img/banner/atencion-asesor.webp"
+					loading="lazy"
+					alt="Hombre hablando con personas explicando los beneficios."
+					class={styles["banner__image"]}
+				/>
+			</div>
+		</div>
+	</div>
+</section>

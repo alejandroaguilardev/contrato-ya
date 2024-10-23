@@ -1,0 +1,36 @@
+---
+import styles from "./social-networks.module.scss";
+import EmailIcon from "@/icons/EmailIcon.astro";
+import WhatsAppIcon from "@/icons/WhastAppIcon.astro";
+import InstagramIcon from "@/icons/InstagramIcon.astro";
+import FacebookIcon from "@/icons/FacebookIcon.astro";
+import { getCollection } from "astro:content";
+
+const socialLinks = await getCollection("socialLinks");
+
+const iconComponents: any = {
+	EmailIcon,
+	FacebookIcon,
+	WhatsAppIcon,
+	InstagramIcon,
+};
+---
+
+<ul class={styles["social-networks"]}>
+	{
+		socialLinks.map(({ data }: any) => {
+			const IconComponent = iconComponents[data.icon];
+			return (
+				<li>
+					<a
+						href={data.url}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{IconComponent && <IconComponent />}
+					</a>
+				</li>
+			);
+		})
+	}
+</ul>

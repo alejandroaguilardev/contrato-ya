@@ -1,0 +1,20 @@
+.logo {
+    all: unset;
+    display: inline;
+    cursor: pointer;
+    color: var(--primary-color);
+
+    &:hover {
+        color: var(--primary-color);
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+    }
+
+    &__text {
+        font-weight: bold;
+        font-size: var(--fs-logo);
+    }
+}

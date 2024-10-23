@@ -1,0 +1,60 @@
+@use "@/styles/tools/breakpoints.scss" as _breakpoints;
+
+.banner {
+    padding: 6rem 0;
+    background-color: var(--bg--paper);
+
+    &--bg-alt {
+        padding: 6rem 0;
+        background-color: var(--bg);
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__image-container {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    &__image {
+        width: 100%;
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.6s ease;
+
+        &:hover {
+            transform: scale(1.01) rotate(0.5deg);
+            filter: brightness(1.05) saturate(1.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &__content {
+        padding: 4rem;
+        width: 100%;
+    }
+
+    &__description {
+        color: var(--text-color-secondary);
+        margin-bottom: 1rem;
+    }
+
+    &__icon-list {
+        color: var(--text-color-secondary);
+    }
+
+    &__icon-item {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        margin-left: 2rem;
+        font-style: italic;
+    }
+}
+
+@media (min-width: _breakpoints.$breakpoint-sm) {
+    .banner__wrapper {
+        flex-direction: row;
+    }
+}

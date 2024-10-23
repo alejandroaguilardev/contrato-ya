@@ -1,0 +1,103 @@
+---
+import styles from "./footer.module.scss";
+import Subscribe from "@/components/form/Subscribe/Subscribe.astro";
+import SocialNetworks from "@/components/ui/SocialNetworks/SocialNetworks.astro";
+import { getCollection } from "astro:content";
+import EmailIcon from "@/icons/EmailIcon.astro";
+import PhoneIcon from "@/icons/PhoneIcon.astro";
+import AddressIcon from "@/icons/AddressIcon.astro";
+import ScheduleIcon from "@/icons/ScheduleIcon.astro";
+import Logotype from "@/components/ui/Logotype/Logotype.astro";
+
+const contacts = await getCollection("contact");
+const { data: contact } = contacts[0];
+
+const navegation = [
+	{
+		title: "Inicio",
+		link: "/",
+	},
+	{
+		title: "Arrendamiento",
+		link: "#servicios",
+	},
+	{
+		title: "Locacion de servicios",
+		link: "#servicios",
+	},
+	{
+		title: "Contacto",
+		link: "#contacto",
+	},
+	{
+		title: "Politico de privacidad",
+		link: "/politicas-de-privacidad",
+	},
+	{
+		title: "Terminos y condiciones",
+		link: "/terminos-y-condiciones",
+	},
+];
+---
+
+<footer class={styles["footer"]}>
+	<div class={styles["footer__container"]}>
+		<div class={styles["footer__section"]}>
+			<div class={styles["footer__logo"]}>
+				<Logotype logoColor="logo-white" />
+				<p class={styles["footer__logo__text"]}>
+					Consultora digital especializada en servicios legales
+					(LegalTech)
+				</p>
+				<SocialNetworks />
+			</div>
+			<div class={styles["footer__links"]}>
+				<div class={styles["footer__links-column"]}>
+					<h3 class={styles["footer__links-title"]}>Navegación</h3>
+					<ul class={styles["footer__links-list"]}>
+						{
+							navegation.map((nav) => (
+								<li class={styles["footer__link-item"]}>
+									<a
+										href={nav.link}
+										class="text-white"
+										aria-label={nav.title}
+									>
+										{nav.title}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+			<div class={styles["footer__links-column"]}>
+				<h3 class={styles["footer__links-title"]}>Contacto</h3>
+				<ul class={styles["footer__links-list"]}>
+					<li class={styles["footer__link-item"]}>
+						<AddressIcon />
+						{contact["address"]}
+					</li>
+					<li class={styles["footer__link-item"]}>
+						<PhoneIcon />
+						{contact["phone"]}
+					</li>
+					<li class={styles["footer__link-item"]}>
+						<EmailIcon />
+						{contact["email"]}
+					</li>
+					<li class={styles["footer__link-item"]}>
+						<ScheduleIcon />
+						{contact["schedule"]}
+					</li>
+				</ul>
+			</div>
+			<Subscribe client:load />
+		</div>
+		<div class={styles["footer__copyright"]}>
+			<span
+				>Copyright 2024 Contrato ya © Todos los derechos reservados</span
+			>
+		</div>
+	</div>
+</footer>

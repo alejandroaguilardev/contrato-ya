@@ -1,0 +1,25 @@
+@use "@/styles/tools/breakpoints.scss" as _breakpoints;
+
+.header {
+    background-color: var(--bg-paper);
+    box-shadow: 0 0.4rem 0.2rem var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-menu);
+    padding: 0.5rem;
+    width: 100%;
+
+    &__content {
+        align-items: center;
+        display: flex;
+        height: 4rem;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: _breakpoints.$breakpoint-sm) {
+    .header {
+        padding: 1rem;
+    }
+
+}

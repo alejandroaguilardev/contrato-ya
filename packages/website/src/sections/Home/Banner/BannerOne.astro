@@ -1,0 +1,68 @@
+---
+import QualityIcon from "@/icons/QualityIcon.astro";
+import TrustIcon from "@/icons/TrustIcon.astro";
+import ComfortIcon from "@/icons/ComfortIcon.astro";
+import PaymentIcon from "@/icons/PaymentIcon.astro";
+
+import styles from "./banner.module.scss";
+
+const { rowReverse = false } = Astro.props;
+
+const list = [
+	{
+		title: "La elaboración de contratos está supervisada por un especialista.",
+		icon: QualityIcon,
+	},
+	{
+		title: "Orientación clara para que entiendas tu contrato.",
+		icon: TrustIcon,
+	},
+	{
+		title: "Asesoría virtual según tus necesidades.",
+		icon: ComfortIcon,
+	},
+	{
+		title: "Manejo de pagos y programación de citas sin complicaciones",
+		icon: PaymentIcon,
+	},
+];
+---
+
+<section class={styles["banner"]} id="faq">
+	<div class="container">
+		<div
+			class={`${styles["banner__wrapper"]} ${rowReverse ? styles["banner__reverse"] : ""} `}
+		>
+			<div class={styles["banner__image-container"]}>
+				<img
+					src="/assets/img/banner/manos.webp"
+					loading="lazy"
+					alt="Hombre hablando con entusiasmo por teléfono, revisando la información en su computadora portátil."
+					class={styles["banner__image"]}
+				/>
+			</div>
+			<div class={styles["banner__content"]}>
+				<h2 class={styles["banner__title"]}>
+					Todo virtual y personalizado: Contratos claros, completos y
+					hechos a tu medida.
+				</h2>
+				<p class={styles["banner__description"]}>
+					En Contrato Ya podrás recibir atención personalizada estés
+					donde estés:
+				</p>
+				<div class={styles["banner__icon-list"]}>
+					{
+						list.map((item) => (
+							<div class={styles["banner__icon-item"]}>
+								<item.icon class={styles["banner__icon"]} />
+								<div class={styles["banner__icon-text"]}>
+									{item.title}
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

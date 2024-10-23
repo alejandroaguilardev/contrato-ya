@@ -1,0 +1,49 @@
+@use "@/styles/tools/breakpoints.scss" as _breakpoints;
+
+.consultation-section {
+    background-color: var(--primary-color);
+    padding: 2rem 0;
+
+    &__title {
+        color: var(--bg-paper);
+        width: 100%;
+        font-weight: bold;
+        font-size: var(--fs-22);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg-paper);
+        color: var(--primary-color);
+        font-weight: bold;
+        padding: 2rem;
+        width: 100%;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+}
+
+@media (min-width: _breakpoints.$breakpoint-sm) {
+    .consultation-section__title {
+        width: 60%;
+    }
+
+    .consultation-section__content {
+        flex-direction: row;
+    }
+
+    .consultation-section__buttons {
+        width: 40%;
+    }
+
+}

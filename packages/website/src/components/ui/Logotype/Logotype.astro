@@ -1,0 +1,13 @@
+---
+import styles from "./logotype.module.scss";
+import Logo from "@/icons/Logo.astro";
+
+const { logoColor = "" } = Astro.props;
+---
+
+<a href="/" class={styles.logo} aria-label="logo contrato ya">
+	<div class={`${styles.logo__content} ${logoColor}`}>
+		<Logo />
+		<span class={styles.logo__text}>ONTRATO YA</span>
+	</div>
+</a>
