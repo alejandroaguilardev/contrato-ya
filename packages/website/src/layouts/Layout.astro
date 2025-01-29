@@ -47,7 +47,7 @@ const { title } = Astro.props;
 				"script",
 				"https://connect.facebook.net/en_US/fbevents.js",
 			);
-			fbq("init", "594530933208717");
+			fbq("init", envs.PUBLIC_META_PIXEL_ID);
 			fbq("track", "PageView");
 		</script>
 	</head>
@@ -57,7 +57,7 @@ const { title } = Astro.props;
 				height="1"
 				width="1"
 				style="display:none"
-				src="https://www.facebook.com/tr?id=594530933208717&ev=PageView&noscript=1"
+				src={`https://www.facebook.com/tr?id=${envs.PUBLIC_META_PIXEL_ID}&ev=PageView&noscript=1`}
 			/></noscript
 		>
 		<Header />

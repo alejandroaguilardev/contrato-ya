@@ -1,6 +1,7 @@
 interface EnvConfig {
     HOST_API: string;
     GOOGLE_RECAPTCHA: string;
+    PUBLIC_META_PIXEL_ID: string;
 }
 
 function getEnvVariable<T = string>(key: string, defaultValue?: T): T {
@@ -14,6 +15,7 @@ function getEnvVariable<T = string>(key: string, defaultValue?: T): T {
 const envs: EnvConfig = {
     HOST_API: getEnvVariable('PUBLIC_HOST_API'),
     GOOGLE_RECAPTCHA: getEnvVariable('PUBLIC_GOOGLE_RECAPTCHA'),
+    PUBLIC_META_PIXEL_ID: getEnvVariable('PUBLIC_META_PIXEL_ID'),
 };
 
 export default envs;
