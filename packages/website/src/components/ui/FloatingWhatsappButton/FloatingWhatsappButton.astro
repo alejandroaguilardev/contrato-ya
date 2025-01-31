@@ -1,17 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 import styles from "./floating-whatsapp-button.module.scss";
 import WhatsAppIcon from "@/icons/WhastAppIcon.astro";
 
-const advisors = [
-	{
-		name: "Brad Ramos",
-		description: "Asesor Internacional - Nacional",
-		status: "Online",
-		imageUrl:
-			"https://www.pettravelperu.com/frontend/whatsapp_chat_support/asesoras/jimena.png",
-		phoneNumber: "51975758075",
-	},
-];
+const advisors = await getCollection("advisors");
 ---
 
 <div class={styles.whatsappChatSupport}>
@@ -37,7 +29,7 @@ const advisors = [
 		</div>
 		<div class={styles.whatsappChatSupport__popupPersonContainer}>
 			{
-				advisors.map((advisor) => (
+				advisors.map(({ data: advisor }) => (
 					<a
 						href={`https://wa.me/${advisor.phoneNumber}`}
 						target="_blank"
@@ -53,7 +45,7 @@ const advisors = [
 								}
 							>
 								<img
-									src={advisor.imageUrl}
+									src={`/assets/img/advisors/${advisor.imageUrl}`}
 									alt={advisor.name}
 								/>
 							</div>

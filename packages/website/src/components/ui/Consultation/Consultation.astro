@@ -1,5 +1,15 @@
 ---
+import { getCollection } from "astro:content";
 import styles from "./consultation.module.scss";
+
+const socialLinks = await getCollection("socialLinks");
+const whatstappUrl = socialLinks.find(
+	({ data }) => data.platform === "WhatsApp",
+)?.data.url;
+
+if (!whatstappUrl) {
+	throw new Error("URL not found whatstappUrl");
+}
 ---
 
 <section class={styles["consultation-section"]}>
@@ -10,7 +20,7 @@ import styles from "./consultation.module.scss";
 				nosotros.
 			</p>
 			<a
-				href="https://api.whatsapp.com/send?phone=51960627511&text=Hola%20qu%C3%A9%20tal?%20Necesito"
+				href={`${whatstappUrl}?text=Hola%20qu%C3%A9%20tal?%20Necesito`}
 				target="_blank"
 				class={` ${styles["consultation-section__buttons"]}`}
 				aria-label="Conversemos"

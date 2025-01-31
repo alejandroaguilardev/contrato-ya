@@ -19,8 +19,19 @@ const contactsCollection = defineCollection({
     }),
 });
 
+const advisorsCollection = defineCollection({
+    schema: z.object({
+        name: z.string(),
+        phoneNumber: z.string(),
+        status: z.string(),
+        imageUrl: z.string(),
+        description: z.string().optional(),
+    }),
+});
+
 
 export const collections = {
     'contact': contactsCollection,
     'socialLinks': socialCollection,
+    'advisors': advisorsCollection,
 };
