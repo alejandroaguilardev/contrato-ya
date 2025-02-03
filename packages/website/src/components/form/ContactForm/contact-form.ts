@@ -1,7 +1,8 @@
 import envs from "@/config/envs";
 
-const form = document.getElementById("newsletter-form") as HTMLFormElement;
-const alertElement = document.getElementById("newsletter-alert") as HTMLElement;
+const form = document.getElementById("contact-form") as HTMLFormElement;
+const alertElement = document.getElementById("contact-alert") as HTMLElement;
+const contactElement = document.getElementById("contact-button") as HTMLButtonElement;
 
 form?.addEventListener("submit", handleSubmit);
 
@@ -15,8 +16,11 @@ function handleSubmit(event: Event): void {
 
     grecaptcha.execute(envs.GOOGLE_RECAPTCHA, { action: "submit" })
         .then((token) => {
-            const email = getEmail();
-            subscribe(email, token)
+            if (contactElement) {
+                contactElement.disabled = true;
+            }
+            const data = getData();
+            sendContact(data, token)
                 .then(handleSuccess)
                 .catch(handleError)
                 .finally(resetForm);
@@ -24,14 +28,19 @@ function handleSubmit(event: Event): void {
 }
 
 
-async function subscribe(email: string, recaptchaToken: string): Promise<void> {
-    const response = await fetch(envs.HOST_API + "/api/brevo/subscribe", {
+async function sendContact(data: {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+}, recaptchaToken: string): Promise<void> {
+    const response = await fetch(envs.HOST_API_MAIL + "/api/mail/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, recaptcha: recaptchaToken }),
+        body: JSON.stringify({ ...data, recaptcha: recaptchaToken }),
     });
 
-    if (!response.ok) throw new Error("Error en la suscripción");
+    if (!response.ok) throw new Error("Error al enviar el email, intenta nuevamente");
 }
 
 
@@ -40,19 +49,30 @@ function isTermsChecked(): boolean {
     return termsCheckbox.checked;
 }
 
-function getEmail(): string {
-    const emailInput = form.elements.namedItem("email") as HTMLInputElement;
-    return emailInput.value;
+
+function getData(): { name: string; email: string; phone: string; message: string } {
+    const name = form.elements.namedItem("name") as HTMLInputElement;
+    const email = form.elements.namedItem("email") as HTMLInputElement;
+    const phone = form.elements.namedItem("phone") as HTMLInputElement;
+    const message = form.elements.namedItem("message") as HTMLTextAreaElement;
+
+    return {
+        name: name.value,
+        email: email.value,
+        phone: phone.value,
+        message: message.value,
+    };
 }
 
-
 function handleSuccess(): void {
-    showAlert("¡Te has suscrito correctamente!", "success");
+    showAlert("Se ha enviado el correo exitosamente!", "success");
     form.style.display = "none";
 }
 
 function handleError(error: Error): void {
     showAlert(`Error al suscribirse: ${error.message}`, "error");
+    contactElement.disabled = false;
+
 }
 
 function showAlert(message: string, type: string): void {

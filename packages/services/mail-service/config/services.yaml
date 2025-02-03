@@ -1,0 +1,37 @@
+# config/services.yaml
+parameters:
+    mailer.from: '%env(MAILER_FROM)%'
+    mailer.to: '%env(MAILER_TO)%'
+
+services:
+    # Configuración por defecto
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Common\Infrastructure\CurlHttpClient: ~
+    App\SendMailContact\Infrastructure\Validators\ContactRequestValidator: ~
+    App\Common\Infrastructure\GoogleRecaptcha: ~
+
+    # Registrar MailerMailService
+    App\Common\Infrastructure\MailerMailService:
+        arguments:
+            $from: '%mailer.from%'
+
+
+    # Registrar SendMailContact
+    App\SendMailContact\Application\SendMailContact:
+        arguments:
+            $mailService: '@App\Common\Infrastructure\MailerMailService'
+            $to: '%mailer.to%'
+
+
+
+    # Registrar SendMailContactController
+    App\SendMailContact\Infrastructure\SendMailContactController:
+        arguments:
+            $requestValidator: '@App\SendMailContact\Infrastructure\Validators\ContactRequestValidator'
+            $sendMailContact: '@App\SendMailContact\Application\SendMailContact'
+            $googleRecaptcha: '@App\Common\Infrastructure\GoogleRecaptcha'
+            $mailerMailService: '@App\Common\Infrastructure\MailerMailService'
+

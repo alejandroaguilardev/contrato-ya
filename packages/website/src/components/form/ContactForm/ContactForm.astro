@@ -8,7 +8,7 @@ import styles from "./contact-form.module.scss";
 const { title } = Astro.props;
 ---
 
-<div id="alert"></div>
+<div id="contact-alert"></div>
 <form id="contact-form" class={styles["contact-form"]} method="post">
 	<div class={styles["contact-form__header"]}>
 		<h2>{title}</h2>
@@ -78,7 +78,7 @@ const { title } = Astro.props;
 	</div>
 	<div class={styles["contact-form__actions"]}>
 		<div>
-			<button type="submit" class="btn btn--primary">
+			<button type="submit" class="btn btn--primary" id="contact-button">
 				<span>Enviar y obtener asesoría</span>
 			</button>
 		</div>
